@@ -93,6 +93,54 @@ public class Cube : MonoBehaviour {
 		if(Input.GetKeyDown(KeyCode.M) && !this.rotationLocked)
 			StartCoroutine(RotateFace ("BackFace", 'z', 90));
 	}
+
+	public void DoRotate(string faceTag, char axisName, float angle)
+	{
+		GameObject face = GameObject.FindGameObjectWithTag(faceTag);
+		GameObject[] slices = GameObject.FindGameObjectsWithTag("Slice");
+
+		foreach(GameObject slice in slices)
+		{
+				switch(axisName)
+				{
+				case 'x':
+						if(Mathf.RoundToInt (slice.transform.position.x) == Mathf.RoundToInt (face.transform.position.x))
+								slice.transform.parent = face.transform;
+						break;
+				case 'y':
+						if(Mathf.RoundToInt (slice.transform.position.y) == Mathf.RoundToInt (face.transform.position.y))
+								slice.transform.parent = face.transform;
+						break;
+				case 'z':
+						if(Mathf.RoundToInt (slice.transform.position.z) == Mathf.RoundToInt (face.transform.position.z))
+								slice.transform.parent = face.transform;
+						break;
+				}
+		}
+
+		Quaternion rotation;
+		switch(axisName)
+		{
+		case 'x':
+				rotation = Quaternion.Euler(angle, 0, 0);
+				break;
+		case 'y':
+				rotation = Quaternion.Euler(0, angle, 0);
+				break;
+		case 'z':
+				rotation = Quaternion.Euler(0, 0, angle);
+				break;
+		default:
+				rotation = Quaternion.Euler(0, 0, 0);
+				break;
+		}
+		face.transform.rotation = rotation;
+	}
+
+	public void AnimateRotate(string faceTag, char axisName, float angle)
+	{
+		StartCoroutine (RotateFace(faceTag, axisName, angle));
+	}
 	
 	IEnumerator ShuffleCube()
 	{

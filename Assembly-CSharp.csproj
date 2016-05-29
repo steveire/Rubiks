@@ -49,6 +49,7 @@
      <Compile Include="Assets\_scripts\Cube.cs" />
      <Compile Include="Assets\_scripts\Help.cs" />
      <Compile Include="Assets\_scripts\Menu.cs" />
+     <Compile Include="Assets\_scripts\MouseHandler.cs" />
      <Compile Include="Assets\_scripts\Reset.cs" />
      <Compile Include="Assets\_scripts\RubikMap.cs" />
      <Compile Include="Assets\_scripts\Timer.cs" />
